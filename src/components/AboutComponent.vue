@@ -1,27 +1,26 @@
 <template>
-  <Carousel :autoplay="2000" :wrap-around="true">
-    <Slide v-for="slide in 10" :key="slide">
-      <div class="carousel__item">{{ slide }}</div>
-    </Slide>
-
-    <template #addons>
-      <Pagination />
-    </template>
+  <Carousel :value="cars" :autoplayInterval="3000">
+    <template #item="slotProps">
+	</template>
   </Carousel>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
-
-import 'vue3-carousel/dist/carousel.css';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'AboutComponent',
-  components: {
-    Carousel,
-    Slide,
-    Pagination,
+  name: "AboutComponent",
+  data () {
+    return {
+      value: 0,
+      items: ['1', '2', '3', '4', '5'],
+    }
   },
 });
 </script>
+
+<style lang="scss">
+.carousel {
+  height: 100vh;
+}
+</style>

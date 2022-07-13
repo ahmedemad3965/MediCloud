@@ -2,45 +2,70 @@
     <div class="row">
         <div class="col-5">
             <div class="login-page">
-                <button class="btn btn-primary">EN</button> 
                 <div class="container">
                     <div v-if="!registerActive" class="login" v-bind:class="{ error: emptyFields }">
-                        <button @click="registerActive = !registerActive, emptyFields = false"
-                            class="btn btn-secondary">Sign up</button>
-                        <h1>Sign In</h1>
+                        <h1>Log in</h1>
                         <form class="form-group">
-                            <input v-model="emailLogin" type="email" class="form-control" placeholder="Email" required>
-                            <input v-model="passwordLogin" type="password" class="form-control" placeholder="Password"
-                                required>
-                            <input type="submit" class="btn btn-primary" @click="doLogin">
-                            <div class="social-icons">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                </ul>
+                            <div class="p-float-label input-group">
+                                <InputText id="email" type="email" v-model="emailLogin" required />
+                                <label for="email">Email</label>
+                            </div>
+
+                            <div class="p-float-label input-group">
+                                <InputText id="password" type="password" v-model="passwordLogin" required />
+                                <label for="password">Password</label>
+                            </div>
+
+                            <div>
+                                Don't have an account?
+                                <a href="#" @click="(registerActive = !registerActive), (emptyFields = false)">
+                                    Sign up
+                                </a>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit" @click="doLogin">Submit</button>
+                            <div class="btn-google">
+                                <button><img height="16" width="16"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Login
+                                    with Google</button>
                             </div>
                         </form>
                     </div>
 
                     <div v-else class="register" v-bind:class="{ error: emptyFields }">
-                        <button @click="registerActive = !registerActive, emptyFields = false" class="btn btn-secondary">Sign in</button>
                         <h1>Sign Up</h1>
                         <form class="form-group">
-                            <input v-model="emailReg" type="email" class="form-control" placeholder="Email" required>
-                            <input v-model="passwordReg" type="password" class="form-control" placeholder="Password"
-                                required>
-                            <input v-model="confirmReg" type="password" class="form-control"
-                                placeholder="Confirm Password" required>
-                            <input type="submit" class="btn btn-primary" @click="doRegister">
-                            <div class="social-icons">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                </ul>
+                            <div class="p-float-label input-group">
+                                <InputText id="name" type="text" v-model="name" required />
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="p-float-label input-group">
+                                <InputText id="email" type="email" v-model="email" required />
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="p-float-label input-group">
+                                <InputText id="password" type="password" v-model="password" required />
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="p-float-label input-group">
+                                <InputText id="confirmPassword" type="password" v-model="confirmPassword" required />
+                                <label for="confirmPassword">Confirm Password</label>
+                            </div>
+                            <div>
+                                Already have an account?
+                                <a href="#" @click="(registerActive = !registerActive), (emptyFields = false)">
+                                    Log in
+                                </a>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit" @click="doRegister">Submit</button>
+                            <div class="btn-google">
+                                <button><img height="16" width="16"
+                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Sign
+                                    up with Google</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-7 about">
             <AboutComponent />
@@ -52,7 +77,7 @@
 import AboutComponent from "@/components/AboutComponent.vue";
 
 export default {
-    name: 'LoginView',
+    name: "LoginView",
     components: {
         AboutComponent,
     },
@@ -64,8 +89,8 @@ export default {
             emailReg: "",
             passwordReg: "",
             confirmReg: "",
-            emptyFields: false
-        }
+            emptyFields: false,
+        };
     },
 
     methods: {
@@ -78,13 +103,17 @@ export default {
         },
 
         doRegister() {
-            if (this.emailReg === "" || this.passwordReg === "" || this.confirmReg === "") {
+            if (
+                this.emailReg === "" ||
+                this.passwordReg === "" ||
+                this.confirmReg === ""
+            ) {
                 this.emptyFields = true;
             } else {
                 alert("You are now registered");
             }
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -93,12 +122,19 @@ export default {
     height: 100vh;
 }
 
+
 .login-page {
     align-items: center;
     display: flex;
     margin: 0 auto;
     width: 75%;
     height: 100%;
+
+    .submit {
+        margin-top: 20px;
+        width: 100%;
+        border-radius: 25px;
+    }
 
     h1 {
         margin-bottom: 1.5rem;
@@ -109,69 +145,54 @@ export default {
     }
 
     .form-group {
+        .input-group {
+            margin-bottom: 25px;
+
+            label {
+                margin-left: 15px;
+            }
+        }
+
         input {
-            margin-bottom: 20px;
+            padding: 8px 12px;
+            border-radius: 25px;
+            width: 100%;
         }
     }
 
-    .social-icons {
-        text-align: center;
-        font-family: "Open Sans";
-        font-weight: 300;
-        font-size: 1.5em;
-        color: #222222;
+    .btn-google {
+        color: #0068f9;
+        background-color: #ffffff;
+        border: #0068f9 solid 1px;
+        border-radius: 25px;
+        margin-top: 10px;
+        padding: 2px 12px;
 
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        button {
+            color: #0068f9;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+        }
 
-            li {
-                display: inline-block;
-                zoom: 1;
-                width: 65px;
-                vertical-align: middle;
-                border: 1px solid #e3e8f9;
-                font-size: 15px;
-                height: 40px;
-                line-height: 40px;
-                margin-right: 5px;
-                background: #f4f6ff;
+        img {
+            margin-right: 5px;
+        }
 
-                a {
-                    display: block;
-                    font-size: 1.4em;
-                    margin: 0 5px;
-                    text-decoration: none;
+        &:hover {
+            background-color: #f7f7f7;
+        }
 
-                    i {
-                        -webkit-transition: all 0.2s ease-in;
-                        -moz-transition: all 0.2s ease-in;
-                        -o-transition: all 0.2s ease-in;
-                        -ms-transition: all 0.2s ease-in;
-                        transition: all 0.2s ease-in;
-                    }
-
-                    &:focus {
-                        i {
-                            transition: none;
-                            color: #222222;
-                        }
-                    }
-
-                    &:active {
-                        i {
-                            transition: none;
-                            color: #222222;
-                        }
-                    }
-                }
-            }
+        &:active {
+            background-color: #f7f7f7;
         }
     }
 }
 
 .about {
-    background-color: #00A9F7;
+    background-color: #00a9f7;
 }
 </style>
