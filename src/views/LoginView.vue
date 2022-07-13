@@ -68,18 +68,18 @@
             </div>
         </div>
         <div class="about col-md-7 col-12">
-            <AboutComponent />
+            <AdsComponent :ads="ads" />
         </div>
     </div>
 </template>
 
 <script>
-import AboutComponent from "@/components/AboutComponent.vue";
+import AdsComponent from "@/components/AdsComponent.vue";
 
 export default {
     name: "LoginView",
     components: {
-        AboutComponent,
+        AdsComponent,
     },
     data() {
         return {
@@ -91,7 +91,12 @@ export default {
             passwordReg: "",
             confirmReg: "",
             emptyFields: false,
+            ads: [],
         };
+    },
+
+    mounted() {
+        this.getAds();
     },
 
     methods: {
@@ -114,7 +119,27 @@ export default {
                 alert("You are now registered");
             }
         },
-    },
+
+        getAds() {
+            return [
+                {
+                    title: '100% Secure and Trusted Cloud',
+                    details: 'We use the most secure and trusted cloud technologies to store your data.',
+                    image: '1.jpg',
+                },
+                {
+                    title: 'Data Insights and future predections',
+                    details: 'We enable you to see the data insights and future predictions of your patients records.',
+                    image: '2.png',
+                },
+                {
+                    title: 'Get increased flow and revenue',
+                    details: 'We help you to get increased flow and revenue by providing you with the best solutions.',
+                    image: '3.jpg',
+                },
+            ]
+        },
+    }
 };
 </script>
 
