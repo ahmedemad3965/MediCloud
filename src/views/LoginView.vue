@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-5 col-12">
             <div class="login-page">
                 <div class="container">
                     <div v-if="!registerActive" class="login" v-bind:class="{ error: emptyFields }">
@@ -23,12 +23,12 @@
                                 </a>
                             </div>
                             <button type="submit" class="btn btn-primary submit" @click="doLogin">Submit</button>
-                            <div class="btn-google">
-                                <button><img height="16" width="16"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Login
-                                    with Google</button>
-                            </div>
                         </form>
+                        <div class="btn-google">
+                            <button><img height="16" width="16"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Login
+                                with Google</button>
+                        </div>
                     </div>
 
                     <div v-else class="register" v-bind:class="{ error: emptyFields }">
@@ -39,15 +39,15 @@
                                 <label for="name">Name</label>
                             </div>
                             <div class="p-float-label input-group">
-                                <InputText id="email" type="email" v-model="email" required />
+                                <InputText id="email" type="email" v-model="emailReg" required />
                                 <label for="email">Email</label>
                             </div>
                             <div class="p-float-label input-group">
-                                <InputText id="password" type="password" v-model="password" required />
+                                <InputText id="password" type="password" v-model="passwordReg" required />
                                 <label for="password">Password</label>
                             </div>
                             <div class="p-float-label input-group">
-                                <InputText id="confirmPassword" type="password" v-model="confirmPassword" required />
+                                <InputText id="confirmPassword" type="password" v-model="confirmReg" required />
                                 <label for="confirmPassword">Confirm Password</label>
                             </div>
                             <div>
@@ -57,17 +57,17 @@
                                 </a>
                             </div>
                             <button type="submit" class="btn btn-primary submit" @click="doRegister">Submit</button>
-                            <div class="btn-google">
-                                <button><img height="16" width="16"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Sign
-                                    up with Google</button>
-                            </div>
                         </form>
+                        <div class="btn-google">
+                            <button><img height="16" width="16"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/24px-Google_%22G%22_Logo.svg.png" />Sign
+                                up with Google</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-7 about">
+        <div class="about col-md-7 col-12">
             <AboutComponent />
         </div>
     </div>
@@ -84,6 +84,7 @@ export default {
     data() {
         return {
             registerActive: false,
+            name: "",
             emailLogin: "",
             passwordLogin: "",
             emailReg: "",
@@ -120,6 +121,10 @@ export default {
 <style lang="scss">
 .row {
     height: 100vh;
+
+    @media (max-width: 768px) {
+        margin-top: 50px;
+    }
 }
 
 
@@ -147,14 +152,13 @@ export default {
     .form-group {
         .input-group {
             margin-bottom: 25px;
+        }
 
-            label {
-                margin-left: 15px;
-            }
+        button {
+            padding: 8px 0px;
         }
 
         input {
-            padding: 8px 12px;
             border-radius: 25px;
             width: 100%;
         }
@@ -166,7 +170,7 @@ export default {
         border: #0068f9 solid 1px;
         border-radius: 25px;
         margin-top: 10px;
-        padding: 2px 12px;
+        padding: 6px 12px;
 
         button {
             color: #0068f9;
@@ -183,16 +187,20 @@ export default {
         }
 
         &:hover {
-            background-color: #f7f7f7;
+            background-color: #f3f3f3;
         }
 
         &:active {
-            background-color: #f7f7f7;
+            background-color: #f3f3f3;
         }
     }
 }
 
 .about {
     background-color: #00a9f7;
+
+    @media (max-width: 768px) {
+        margin-top: 50px;
+    }
 }
 </style>
