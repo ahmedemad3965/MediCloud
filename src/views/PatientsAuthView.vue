@@ -77,7 +77,7 @@
 import AdsComponent from "@/components/AdsComponent.vue";
 
 export default {
-    name: "LoginView",
+    name: "PatientsAuthView",
     components: {
         AdsComponent,
     },
@@ -143,7 +143,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .row {
     height: 100vh;
 

@@ -3,7 +3,7 @@
     <template #item="slotProps">
       <div class="ad-item">
         <div class="ad-item-img">
-          <img :src="require(`@/assets/${slotProps.data.image}`)" :alt="slotProps.data.title" height="100%" width="100%">
+          <img :src="require(`@/assets/images/${slotProps.data.image}`)" :alt="slotProps.data.title" height="100%" width="100%">
         </div>
         <div>
           <div class="ad-title">{{ slotProps.data.title }}</div>
@@ -51,7 +51,7 @@ export default defineComponent({
 .p-carousel {
   @media  (max-width: 768px) {
     min-height: 300px;
-    margin-top: 50px;
+    // margin-top: 50px;
   }
 
   @media (min-width: 768px) {
@@ -64,7 +64,7 @@ export default defineComponent({
 }
 
 .p-carousel-indicators {
-  position: absolute;
+  // position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -97,6 +97,7 @@ export default defineComponent({
   position: relative;
   overflow: hidden;
   height: 100% !important;
+  margin-top: 30px;
 }
 
 .p-carousel-item {
@@ -121,7 +122,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70% !important;
+  height: 100%;
   width: 100%;
   padding: 20px;
   border-radius: 10px;
@@ -129,8 +130,7 @@ export default defineComponent({
   .ad-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 5%;
   }
 
   .ad-details {
@@ -146,9 +146,9 @@ export default defineComponent({
     position: relative;
     z-index: 1;
     img {
-      width: 80% !important;
-      height: 75vh !important;
-      object-fit: scale-down;
+      width:  300px !important;
+      height: 400px !important;
+      object-fit: contain;
     }
   }
 }

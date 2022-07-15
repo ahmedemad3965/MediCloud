@@ -1,38 +1,31 @@
 import { createRouter, createWebHistory } from "vue-router";
-import store from "@/store";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: () => import("../views/HomeView.vue"),
-    meta: {
-      requiresAuth: true,
-    },
   },
   {
     path: "/",
-    name: "About",
-    component: () => import("../views/AboutView.vue"),
+    name: "about",
+    component: () => import("../views/AboutView.vue"), // todo : by 14 jul
+  },
+  {
+    path: "/patients/auth",
+    name: "patients-auth",
+    component: () => import("../views/PatientsAuthView.vue"),
+  },
+  {
+    path: "/doctors/auth",
+    name: "doctors-auth",
+    component: () => import("../views/DoctorsAuthView.vue"),
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  console.log(to.matched);
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (!store.state.isLoggedIn) {
-      next({ name: "Login" });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
 });
 
 export default router;
